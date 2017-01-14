@@ -37,8 +37,10 @@ function process_all () {
     if [ -d ${array[i]} ]; then
       cd ${array[i]}
       delete_useless ${common[@]}
+      mkdir res
       cd res
       delete_useless ${res[@]}
+      mkdir values
       cd values
       delete_useless ${values[@]}
     else
@@ -83,24 +85,24 @@ declare -a values=('all_search_engines.xml' 'appmsg_colors.xml' 'arrays.xml' 'at
 declare -a core=('java' 'jni' 'tests' 'src')
 
 declare -a theme_packages=('Calendar'  'Camera2' 'Contacts' 'ContactsCommon' 'DeskClock' 'Dialer' 'Gallery2'
-                           'Messaging' 'OmniSwitch' 'PhoneCommon' 'Settings' 'Stk' 'Wolvesden' 'SlimOTA' 'DUI')
+                           'Messaging' 'OmniSwitch' 'PhoneCommon' 'Settings' 'Stk' 'WolvesDen' 'SlimOTA' 'DUI')
 
 declare -a extra=('java' '.idea' 'gradle' '.gitignore' 'build.gradle' 'gradlew' 'gradlew.bat' 'local.properties' 'proguard-rules.pro' 'proguard.flags')
 
 cd $WORKING_DIR
-echo "Removing files so we can clean sync"
-delete_useless ${root[@]}
-cd .repo
+#echo "Removing files so we can clean sync"
+#delete_useless ${root[@]}
+#cd .repo
 #rm -rf local_manifests
-cd ..
-echo "Repo Syncing........."
-repo sync --force-sync >> /dev/null
-if [ $? -eq 0 ]; then
-  echo "Repo Sync success"
-else
-  echo "Repo Sync failure"
-  exit 1
-fi
+#cd ..
+#echo "Repo Syncing........."
+#repo sync --force-sync >> /dev/null
+#if [ $? -eq 0 ]; then
+#  echo "Repo Sync success"
+#else
+#  echo "Repo Sync failure"
+#  exit 1
+#fi
 echo "Cloning Theme Resources repo"
 git clone https://github.com/GZR-ValidusOS/GZR-Scripts.git
 echo "Removing unneeded files"
