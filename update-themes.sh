@@ -37,10 +37,8 @@ function process_all () {
     if [ -d ${array[i]} ]; then
       cd ${array[i]}
       delete_useless ${common[@]}
-      mkdir res
       cd res
       delete_useless ${res[@]}
-      mkdir values
       cd values
       delete_useless ${values[@]}
     else
